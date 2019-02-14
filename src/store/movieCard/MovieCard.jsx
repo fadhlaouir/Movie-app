@@ -12,7 +12,7 @@ const MovieCard = ({
 
 
 }) => (
-    <div className="movieCard">
+    <div className="movie-card">
 
       <div className="header">
 

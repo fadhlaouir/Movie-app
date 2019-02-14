@@ -6,11 +6,46 @@ import StarRating from '../starsRating'
 const style = { maxWidth: 230 };
 class Addbutton extends Component {
   state = {
-    showMovieInfo: false
+    showMovieInfo: false,
+    image: '',
+    title: '',
+    year: ''
   };
+  handleImageChange = (value) => {
+    this.setState({
+      image: value
+    })
+  }
+  handleTitleChange = (value) => {
+    this.setState({
+      title: value
+    })
+  }
+  handleYearChange = (value) => {
+    this.setState({
+      year: value
+    })
+  }
+
+  handleValidate = () => {
+    const newMovie = {
+      id: '99',
+      image: this.state.image,
+      imageName: 'Whiteboyz',
+      year: this.state.year,
+      title: this.state.title,
+
+    }
+    this.props.onAddMovie(newMovie)
+
+  }
 
   render() {
-    const { showMovieInfo } = this.state;
+    const { showMovieInfo, image, title, year } = this.state;
+    // const { onAddMovie } = this.props
+
+
+
     return (
       <div>
         <Card style={style}>
@@ -29,20 +64,21 @@ class Addbutton extends Component {
             <ul className="list-group">
               <li className="list-group-item">
                 Image Link :
-              <input type="text" name="name" />
+              <input type="text" name="image" value={image} onChange={(e) => this.handleImageChange(e.target.value)} />
               </li>
               <li className="list-group-item">
                 Movie Title :
-              <input type="text" name="name" />
+              <input type="text" name="title" value={title} onChange={(e) => this.handleTitleChange(e.target.value)} />
               </li>
               <li className="list-group-item">
                 Year :
-              <input type="number" name="year" />
+              <input type="number" name="year" value={year} onChange={(e) => this.handleYearChange(e.target.value)} />
               </li>
               <li className="list-group-item">
                 rating :
               <StarRating />
               </li>
+              <button type="button" onClick={this.handleValidate}>validate</button>
             </ul>
 
           </Card>

@@ -41,12 +41,19 @@ class App extends Component {
 
     ]
   }
-  onChange = (e) => {
-    this.setState({ search: e.target.value })
-    const { search } = this.state;
-    if (search !== "" && Store.title.indexOf(search) === -1) {
-      return null
-    }
+
+  addMovie = (movie) => {
+    let newMovies = this.state.movies.concat(movie)
+    this.setState({
+
+      movies: newMovies,
+    })
+
+  }
+
+  handleSearch = (value) => {
+    const { movies } = this.state
+    this.setState({ searchTitle: value.title, movies: movies.filter((e) => e.title.includes(value)) })
 
   }
 
@@ -55,7 +62,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Store onInputChange={this.onChange} movies={this.state.movies} />
+        <Store movies={this.state.movies} onAddMovie={this.addMovie} handleSearch={this.handleSearch} />
       </div>
     );
   }

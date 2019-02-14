@@ -1,14 +1,16 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import './Search.scss'
-
-const Search = () => (
+// onInputChange,
+const Search = ({ handleSearch }) => (
   <div className="search">
-    <input type="text" placeholder="Enter movie name" />
-
-    <button>Search</button>
+    <div>
+      <label style={{ color: '#fff', fontFamily: 'bold', fontSize: '24', paddingRight: '10px' }}>Search</label>
+      <input label="Search Movie" icon="search" onChange={(e) => handleSearch(e.target.value)} />
+    </div>
   </div>
 )
+// handleSearch(e.target.value)
 
 // Search.propTypes = {
 // }
